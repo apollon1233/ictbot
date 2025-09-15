@@ -1,0 +1,36 @@
+[MASTER]
+jobs=0
+extension-pkg-allow-list=
+
+[MESSAGES CONTROL]
+disable=
+    missing-module-docstring,
+    missing-class-docstring,
+    missing-function-docstring,
+    too-many-locals,
+    too-many-branches,
+    too-many-statements,
+    too-many-nested-blocks,
+    broad-exception-caught,
+    protected-access,
+    line-too-long,
+    mixed-line-endings,
+    no-else-return,
+    no-else-continue,
+    too-many-instance-attributes,
+    too-many-public-methods,
+    too-many-arguments,
+    too-many-positional-arguments,
+    trailing-whitespace,
+    superfluous-parens,
+    too-many-lines,
+    unused-argument,
+    cell-var-from-loop,
+    chained-comparison,
+    unused-variable
+
+[FORMAT]
+max-line-length=140
+
+[BASIC]
+good-names=i,j,k,x,y,z,df,st,ex,ws,ok,H,L,C,Open,opn,rp,eq,_ZoneInfo,trail_activation_R,oneR

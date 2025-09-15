@@ -1,0 +1,22 @@
+[instrument] tick=0.1 step=0.001 minNotional=5.0
+
+--- PHASE: normal ---
+[instrument] tick=0.1 step=0.001 minNotional=5.0
+{"evt":"tp_submit","which":"final","ok":true,"orderId":1003}
+{"evt":"tp_submit","which":"partial","ok":true,"orderId":1004}
+{"evt":"entry","side":"short","qty":0.333,"entry_ref":29961.8,"stop":29976.8,"tp_final":29925.9,"tp_partial":29859.3,"score":1.079,"sig":"20250915|short|29960.6-29961.8|29859.0|b1096|n2|q29859.0|tASIA_L"}
+{"evt":"heartbeat","trades_today":0,"realized_today":0.0,"server_time_offset_ms":0,"last_candle":1757898953989,"ws_fresh":false,"bid":null,"ask":null,"safe_mode":false,"safe_reason":"","ws_reconnects_market":0,"ws_reconnects_uds":0}
+
+--- PHASE: funding_near ---
+{"evt":"skip","reason":"near_funding_block","mins_to":2.0,"abs_bps":1.0}
+
+--- PHASE: funding_high ---
+{"evt":"tp_submit","which":"final","ok":true,"orderId":1007}
+{"evt":"tp_submit","which":"partial","ok":true,"orderId":1008}
+{"evt":"entry","side":"short","qty":0.2,"entry_ref":29961.8,"stop":29976.8,"tp_final":29925.9,"tp_partial":29859.3,"score":1.079,"sig":"20250915|short|29960.6-29961.8|29859.0|b1096|n2|q29859.0|tASIA_L"}
+{"evt":"heartbeat","trades_today":0,"realized_today":0.0,"server_time_offset_ms":0,"last_candle":1757898953989,"ws_fresh":false,"bid":null,"ask":null,"safe_mode":false,"safe_reason":"","ws_reconnects_market":0,"ws_reconnects_uds":0}
+
+--- PHASE: pnl_losses ---
+{"evt":"blocked","reason":"daily_guardrails"}
+
+--- DRY RUN COMPLETE ---

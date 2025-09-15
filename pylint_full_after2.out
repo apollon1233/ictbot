@@ -1,0 +1,8 @@
+************* Module ictbot
+ictbot.py:47:4: C0103: Constant name "_ZoneInfo" doesn't conform to UPPER_CASE naming style (invalid-name)
+ictbot.py:239:4: C0103: Attribute name "trail_activation_R" doesn't conform to snake_case naming style (invalid-name)
+ictbot.py:1902:8: C0103: Variable name "oneR" doesn't conform to snake_case naming style (invalid-name)
+
+------------------------------------------------------------------
+Your code has been rated at 9.99/10 (previous run: 9.76/10, +0.23)
+

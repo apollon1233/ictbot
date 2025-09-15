@@ -1,0 +1,51 @@
+    try:
+        ex.new_order(
+            symbol=cfg.symbol,
+            side="SELL" if params.side == "long" else "BUY",
+            type="STOP_MARKET",
+            stopPrice=side_round(new_sl, st.tick, "buy" if side == "long" else "sell", favor="protection"),
+            closePosition=True,
+            workingType=cfg.working_type,
+            newClientOrderId=new_cid,
+        )
+        placed = True
+        # success → cancel old (best effort)
+        try:
+            if st.last_trailing_client_id:
+                ex.cancel_order(symbol=cfg.symbol, origClientOrderId=st.last_trailing_client_id)
+            elif st.last_trailing_order_id is not None:
+                ex.cancel_order(symbol=cfg.symbol, orderId=int(st.last_trailing_order_id))
+        except Exception:
+            pass
+    except Exception as e_first:
+        # Likely existing closePosition protective stop - cancel then place once
+        try:
+            if st.last_trailing_client_id:
+                ex.cancel_order(symbol=cfg.symbol, origClientOrderId=st.last_trailing_client_id)
+            elif st.last_trailing_order_id is not None:
+                ex.cancel_order(symbol=cfg.symbol, orderId=int(st.last_trailing_order_id))
+            ex.new_order(
+                symbol=cfg.symbol,
+                side="SELL" if params.side == "long" else "BUY",
+                type="STOP_MARKET",
+                stopPrice=side_round(new_sl, st.tick, "buy" if params.side == "long" else "sell", favor="protection"),
+                closePosition=True,
+                workingType=cfg.working_type,
+                newClientOrderId=new_cid,
+            )
+            placed = True
+        except Exception as e_second:
+            print(f"[trail] replace failed (kept previous protective stop): {e_first}; {e_second}")
+            return
+
+    if placed:
+        with st.buf_lock:
+            st.last_trailing_sl = new_sl
+            st.last_trailing_side = params.side
+            st.last_trailing_client_id = new_cid
+            st.last_trailing_order_id = None
+        print_json({"evt": "trail_update", "side": params.side, "new_sl": round(new_sl, 8), "atr": round(a, 6)})
+        # Best-effort cleanup: ensure only one closePosition STOP exists
+        try:
+            oo = ex.open_orders(cfg.symbol)
+            for o in oo:

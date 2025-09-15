@@ -1,0 +1,19 @@
+[instrument] tick=0.1 step=0.001 minNotional=5.0
+
+--- PHASE: normal ---
+[instrument] tick=0.1 step=0.001 minNotional=5.0
+{"evt":"skip","reason":"score_below","score":0.717}
+{"evt":"heartbeat","trades_today":0,"realized_today":0.0,"server_time_offset_ms":0,"last_candle":1757898875424,"ws_fresh":false,"bid":null,"ask":null,"safe_mode":false,"safe_reason":"","ws_reconnects_market":0,"ws_reconnects_uds":0}
+
+--- PHASE: funding_near ---
+{"evt":"skip","reason":"near_funding_block","mins_to":2.0,"abs_bps":1.0}
+
+--- PHASE: funding_high ---
+{"evt":"skip","reason":"score_below","score":0.717}
+{"evt":"heartbeat","trades_today":0,"realized_today":0.0,"server_time_offset_ms":0,"last_candle":1757898875424,"ws_fresh":false,"bid":null,"ask":null,"safe_mode":false,"safe_reason":"","ws_reconnects_market":0,"ws_reconnects_uds":0}
+
+--- PHASE: pnl_losses ---
+{"evt":"skip","reason":"score_below","score":0.717}
+{"evt":"heartbeat","trades_today":0,"realized_today":-40.0,"server_time_offset_ms":0,"last_candle":1757898875424,"ws_fresh":false,"bid":null,"ask":null,"safe_mode":false,"safe_reason":"","ws_reconnects_market":0,"ws_reconnects_uds":0}
+
+--- DRY RUN COMPLETE ---
